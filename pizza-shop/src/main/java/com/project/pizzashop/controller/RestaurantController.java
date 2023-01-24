@@ -324,6 +324,7 @@ public class RestaurantController {
             throw new IllegalArgumentException("Critical mistake in code...");
         User user = active.get();
         user.setIsActive(false);
+        orders.deleteAll();
         users.save(user);
         return "redirect:/";
     }
