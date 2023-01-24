@@ -1,0 +1,60 @@
+<script>
+    function add()
+    {
+        var url = "/add_rest";
+        var rest = {};
+        rest.name = document.getElementById("name").value;
+        rest.city = document.getElementById("city").value;
+        rest.address = document.getElementById("address").value;
+        rest.email = document.getElementById("email").value;
+        rest.phone = document.getElementById("phone").value;
+        rest.rate = document.getElementById("rate").value;
+        rest.photo = document.getElementById("photo").value;
+        if (rest.name == "" || rest.city == "" || rest.address == "" || rest.email == "")
+          return;
+        var json = JSON.stringify(rest);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(json);
+        xhr.onload = function() {alert(`${xhr.response}`);};
+    }
+    function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Add Restaurant - Pizza Shop Simulator</title>
+</head>
+<body>
+<h2 style="padding-top:20px"> Add new Restaurant </h2>
+<form name="new_rest" class="myform">
+  <div class="form-inner">
+    <h4>Name*</h4>
+    <input type="text" id="name" name="name" placeholder="My favourite restaurant" required/>
+    <h4>City*</h4>
+    <input type="text" id="city" name="city" placeholder="Berlin" required/>
+    <h4>Address*</h4>
+    <input type="text" id="address" name="address" placeholder="Pizzastr.4, 12345" required/>
+    <h4>Email*</h4>
+    <input type="email" id="email" name="email" placeholder="pizza@google.com" required/>
+    <h4>Phone</h4>
+    <input type="text" id="phone" name="phone" placeholder="+49123456789" pattern="[\\+]?[0-9]*"/>
+    <h4>Rate*</h4>
+    <input type="number" step="any" id="rate" name="rate" placeholder="4.3" min="1" max="5" required/>
+    <h4>Photo (URL)</h4>
+    <p>*photo will be represented in 500x250 format</p>
+    <input type="text" id="photo" name="photo" placeholder="https://restaurant.com/photo.jpg"/>
+  </div>
+  <div style="padding-left:110px">
+    <button type="submit" onclick="add();">Add</button>
+    <button type="submit" onclick="back();">Back</button>
+  </div>
+</form>
+</body>
+</html>

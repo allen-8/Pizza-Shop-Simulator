@@ -1,0 +1,48 @@
+<script>
+    function del()
+    {
+        var url = "/delete_rest/";
+        var type = document.getElementById("type").value;
+        if (type == "Pizza") {
+            url = "/delete_pizza/"; }
+        url += document.getElementById("index").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.send(null);
+        xhr.onload = function() {alert(`${xhr.response}`);};
+    }
+        function back()
+    {
+        location.href = "/";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Delete Item - Pizza Shop Simulator</title>
+</head>
+<body>
+<h1></h1>
+<form name="dev" class="myform">
+    <div class="form-inner">
+        <h4>What do you want to delete?</h4>
+        <div style="padding-left:135px">
+        <select id="type" name ="type">
+            <option value="Restaurant">Restaurant</option>
+            <option value="Pizza">Pizza</option>
+        </select>
+        </div>
+        <p>&nbsp;</p>
+        <h4>Item's index</h4>
+        <input type="text" id="index" name="index" placeholder="index"/><br/>
+    </div>
+</form>
+<div style="padding-left:650px">
+    <button type="submit" onclick="del();">Delete</button>
+    <button type="submit" onclick="back();">Back</button>
+</div>
+</body>
+</html>

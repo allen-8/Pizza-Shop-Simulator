@@ -1,0 +1,53 @@
+<script>
+    function searchrest()
+    {
+        var url = "/search_rest?city=" + document.getElementById("city").value +
+        "&rate=" + document.getElementById("rate").value + "&sort=" + document.getElementById("sort").value;
+        location.href = url;
+    }
+        function back()
+    {
+        location.href = "/";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Search Restaurant - Pizza Shop Simulator</title>
+</head>
+<body>
+<h1></h1>
+<h2>Search for restaurant...</h2>
+<form name="search" class="myform" >
+  <div class="form-inner">
+    <h4>City</h4>
+    <input type="text" id="city" name="city" placeholder="leave empty for all"/><br/>
+    <h4>Rate</h4>
+    <div style="padding-left:80px">
+    <select id="rate" name ="rate">
+      <option value="1">Any</option>
+      <option value="4.5">Excellent (4.5 or higher)</option>
+      <option value="4">Good (4 or higher)</option>
+      <option value="3.5">Not Bad (3.5 or higher)</option>
+      <option value="3">OK (3 or higher)</option>
+    </select>
+    </div>
+    <p>&nbsp;</p>
+    <h4>Sort by</h4>
+    <div style="padding-left:150px">
+    <select id="sort" name ="sort">
+      <option value="name">Name</option>
+      <option value="rate">Rate</option>
+    </select>
+  </div>
+  </div>
+</form>
+<div style="padding-left:650px">
+  <button type="button" onclick="searchrest();">Search</button>
+  <button type="submit" onclick="back();">Back</button>
+</div>
+</body>
+</html>

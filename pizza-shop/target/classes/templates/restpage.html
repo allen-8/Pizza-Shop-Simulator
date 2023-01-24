@@ -1,0 +1,57 @@
+<script>
+    function back()
+    {
+        location.href = "/restlist";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Restaurant Info - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<div th:switch="${restinfo}">
+  <h2 th:case="null">Info is absent...</h2>
+  <div th:case="*">
+    <h1></h1>
+    <h2 style="text-align:center" th:text="${restinfo[0]}"></h2>
+    <img th:src="@{${restinfo[5]}}" style="padding-left:850px; position:absolute;" width="1250" height="250px"/>
+    <h4 style="text-align:left; padding-left:400px" th:text="'Address: ' + ${restinfo[1]}"></h4>
+    <h4 style="text-align:left; padding-left:400px" th:text="'Email: ' + ${restinfo[2]}"></h4>
+    <h4 style="text-align:left; padding-left:400px" th:text="'Phone: ' + ${restinfo[3]}"></h4>
+    <h4 style="text-align:left; padding-left:400px" th:text="'Rate: ' + ${restinfo[4]}"></h4>
+  </div>
+</div>
+<div th:switch="${menu}" style="padding-top:200px">
+  <h2 th:case="null">List is empty...</h2>
+  <div th:case="*">
+    <h1></h1>
+    <h4 style="text-align:center">Pizza Catalog</h4>
+    <table border="1">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price (small)</th>
+        <th>Price (medium)</th>
+        <th>Price (big)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pizza : ${menu}">
+        <td width="150"> <a th:text="${pizza.name}" th:href="@{/pizzainfo?id={id}(id=${pizza.pizza_id})}"></a></td>
+        <td width="250" th:text="${pizza.description}"></td>
+        <td width="50" th:text="${pizza.small_price le -1} ? '-' : ${pizza.small_price}"></td>
+        <td width="50" th:text="${pizza.medium_price le -1} ? '-' : ${pizza.medium_price}"></td>
+        <td width="50" th:text="${pizza.big_price le -1} ? '-' : ${pizza.big_price}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div style="padding-left:700px">
+  <button type="button" onclick="back();">Back</button>
+</div>
+</body>

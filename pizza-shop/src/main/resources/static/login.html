@@ -1,0 +1,56 @@
+<script>
+    function log()
+    {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("pass").value;
+        if (email == "" || pass == "") {
+          return false; }
+        var url = "/login?email=" + email + "&password=" + password;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send(null);
+        xhr.onreadystatechange= function(){
+            if (xhr.readyState == 4) {
+                 alert(`${xhr.response}`);
+                    if (xhr.status == 200)
+                        location.href = "/";
+            };
+           };
+    }
+    function reg()
+    {
+        location.href = "/register.html";
+    }
+        function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Login - Pizza Shop Simulator</title>
+</head>
+<body>
+<h2 style="padding-top:20px"> Login </h2>
+<form name="new_rest" class="myform">
+    <div class="form-inner">
+        <h4>Email*</h4>
+        <input type="email" id="email" name="email" placeholder="user@gmail.com" required/>
+        <h4>Password*</h4>
+        <input type="password" id="pass" name="pass" placeholder="password" required/>
+    </div>
+    <div style="padding-left:165px">
+        <button type="submit" onclick="log();">Login</button>
+    </div>
+    <div style="padding-left:110px">
+        <button type="button" onclick="reg();">New Customer?</button>
+    </div>
+    <div style="padding-left:170px">
+    <button type="submit" onclick="back();">Back</button>
+    </div>
+</form>
+</body>
+</html>

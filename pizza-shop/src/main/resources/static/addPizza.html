@@ -1,0 +1,63 @@
+<script>
+    function add()
+    {
+        var name = document.getElementById("name").value;
+        var rest = document.getElementById("rest").value;
+        if (name == "" || rest == "") {
+          return; }
+        var desc = document.getElementById("desc").value;
+        var small_price = document.getElementById("s_price").value;
+        var medium_price = document.getElementById("m_price").value;
+        var big_price = document.getElementById("b_price").value;
+        var photo = document.getElementById("photo").value;
+        var url = "/add_pizza?name=" + name + "&restaurant=" + rest + "&description=" + desc +
+        "&small_price=" + small_price + "&medium_price=" + medium_price + "&big_price=" + big_price + "&photo="
+        + photo;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send(null);
+        xhr.onload = function() {alert(`${xhr.response}`);};
+        return false;
+    }
+    function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Add Pizza - Pizza Shop Simulator</title>
+</head>
+<body>
+<h2 style="padding-top:20px"> Add new Pizza </h2>
+<form name="new_rest" class="myform">
+  <div class="form-inner">
+    <h4>Name*</h4>
+    <input type="text" id="name" name="name" placeholder="My delicious pizza" required/>
+    <h4>Restaurant*</h4>
+    <input type="text" id="rest" name="rest" placeholder="Pizza Restaurant" required/>
+    <h4>Description</h4>
+    <textarea id="desc" name="desc" rows="4" placeholder="Cheese, tomatoes and chicken"></textarea>
+    <div class="form2">
+      <h4>Prices($)</h4>
+      <p>*leave empty if size is unavailable</p>
+      <h4 style="padding-right:50px">Small &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Medium&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big</h4>
+      <input type="number" step="any" id="s_price" name="s_price" placeholder="4.7"/>
+      <input type="number" step="any" id="m_price" name="m_price" placeholder="7.5"/>
+      <input type="number" step="any" id="b_price" name="b_price" placeholder="10.2"/>
+    </div>
+      <h4>Photo (URL)</h4>
+      <p>*photo will be represented in 500x250 format</p>
+      <input type="text" id="photo" name="photo" placeholder="https://restaurant.com/photo.jpg"/>
+  </div>
+  <div style="padding-left:110px">
+    <button type="submit" onclick="add();">Add</button>
+    <button type="button" onclick="back();">Back</button>
+  </div>
+</form>
+</body>
+</html>

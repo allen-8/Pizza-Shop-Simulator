@@ -1,0 +1,45 @@
+<script>
+    function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Restaurant Catalog - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<div th:switch="${rests}">
+    <h2 th:case="null">No results...</h2>
+    <div th:case="*">
+        <h1></h1>
+        <h2 style="text-align:center">Restaurant Catalog</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Rate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rest : ${rests}">
+                <td width="150"> <a th:text="${rest.name}" th:href="@{/restinfo?id={id}(id=${rest.rest_id})}"></a></td>
+                <td width="250" th:text="${rest.address} + ', ' + ${rest.city}"></td>
+                <td width="150" th:text="${rest.email}"></td>
+                <td width="150" th:text="${rest.phone}"></td>
+                <td width="50" th:text="${rest.rate}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="padding-left:700px">
+        <button type="button" onclick="back();">Menu</button>
+        </div>
+    </div>
+</div>
+</body>

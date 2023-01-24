@@ -1,0 +1,34 @@
+<script>
+    function back()
+    {
+        location.href = "/showcard";
+    }
+    function card()
+    {
+        var url = "/payment";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send(null);
+        xhr.onload = function() {alert(`${xhr.response}`);};
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Order Confirmation - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<h1></h1>
+<h2>Confirm Order?</h2>
+<p>Your card will become empty</p>
+<div style="padding-left:750px; position:absolute; ">
+    <button type="button" onclick="card();">Order</button>
+</div>
+<div style="padding-left:650px;">
+    <button type="button" onclick="back();">Back</button>
+</div>
+</div>
+</body>

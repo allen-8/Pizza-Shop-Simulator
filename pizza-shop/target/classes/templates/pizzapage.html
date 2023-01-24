@@ -1,0 +1,52 @@
+<script>
+    function back()
+    {
+        location.href = "/pizzalist";
+    }
+    function card()
+    {
+        var url = "/addtocard?pizza=" + window.location.search + "&size=" + document.getElementById("size").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send(null);
+        xhr.onload = function() {alert(`${xhr.response}`);};
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Restaurant Info - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<div th:switch="${pizzainfo}">
+    <h2 th:case="null">Info is absent...</h2>
+    <div th:case="*">
+        <h1></h1>
+        <h2 th:text="${pizzainfo[0]}"></h2>
+        <img th:src="@{${pizzainfo[6]}}" style="padding-left:850px; position:absolute;" width="1250" height="250px"/>
+        <h4 style="text-align:left; padding-left:400px; text-decoration-line:underline" th:text="'Restaurant: ' + ${pizzainfo[1]}"></h4>
+        <div style="padding-right:700px">
+        <p style="text-align:left; padding-left:400px" th:text="${pizzainfo[2]}"></p>
+        </div>
+        <h4 style="text-align:left; padding-left:400px; text-decoration-line:underline">Prices:</h4>
+        <h4 style="text-align:left; padding-left:400px" th:text="'Small: ' + ${pizzainfo[3]}"></h4>
+        <h4 style="text-align:left; padding-left:400px" th:text="'Medium: ' + ${pizzainfo[4]}"></h4>
+        <h4 style="text-align:left; padding-left:400px" th:text="'Big: ' + ${pizzainfo[5]}"></h4>
+    </div>
+</div>
+    <div style="padding-left:600px; position:absolute; padding-top:125px" class="form-inner">
+        <select id="size" name ="size">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Big">Big</option>
+        </select>
+    </div>
+<div style="padding-left:750px; padding-top:100px">
+    <button type="button" onclick="card();">Add to Card</button>
+</div>
+<div style="padding-left:700px;">
+    <button type="button" onclick="back();">Back</button>
+</div>
+</body>

@@ -1,0 +1,47 @@
+<script>
+    function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Pizza Catalog - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<div th:switch="${pizzas}">
+    <h2 th:case="null">No results...</h2>
+    <div th:case="*">
+        <h1></h1>
+        <h2 style="text-align:center">Pizza Catalog</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Restaurant</th>
+                <th>Description</th>
+                <th>Price (small)</th>
+                <th>Price (medium)</th>
+                <th>Price (big)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pizza : ${pizzas}">
+                <td width="150"> <a th:text="${pizza.name}" th:href="@{/pizzainfo?id={id}(id=${pizza.pizza_id})}"></a></td>
+                <td width="150" th:text="${pizza.restaurant.name}"></td>
+                <td width="300" th:text="${pizza.description}"></td>
+                <td width="50" th:text="${pizza.small_price le -1} ? '-' : ${pizza.small_price}"></td>
+                <td width="50" th:text="${pizza.medium_price le -1} ? '-' : ${pizza.medium_price}"></td>
+                <td width="50" th:text="${pizza.big_price le -1} ? '-' : ${pizza.big_price}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="padding-left:700px">
+            <button type="button" onclick="back();">Menu</button>
+        </div>
+    </div>
+</div>
+</body>

@@ -1,0 +1,50 @@
+<script>
+    function back()
+    {
+        location.href = "/";
+    }
+    function conf()
+    {
+        location.href = "confirm.html";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Card - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+<div th:switch="${orders}">
+    <h2 th:case="null">Your card is empty!</h2>
+    <p th:case="null">Go to pizza catalog to create an order!</p>
+    <div th:case="*">
+        <h1></h1>
+        <h2 style="text-align:center" th:text="'Your order from ' + ${rest}"></h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Pizza</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td width="150"> <a th:text="${order.pizza.name}" th:href="@{/pizzainfo?id={id}(id=${order.pizza.pizza_id})}"></a></td>
+                <td width="100" th:text="${order.size}"></td>
+                <td width="50" th:text="${order.price}"></td>
+                <td width="100"> <a th:href="@{/removepizza?id={id}(id=${order.order_id})}">Remove</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <h4 th:text="'Total price: ' + ${price}"></h4>
+        <div style="padding-left:600px">
+            <button type="button" onclick="conf();">Make Order</button>
+            <button type="button" onclick="back();">Back</button>
+        </div>
+    </div>
+</div>
+</body>

@@ -1,0 +1,69 @@
+<script>
+function log()
+{
+    location.href = "/checklogin";
+}
+function card()
+{
+    location.href = "/showcard";
+}
+</script>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Pizza Shop Simulator</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div text-align="center">
+    <h3>  </h3>
+</div>
+<div style="padding-left:450px">
+<div class="dropdown">
+    <button class="menubtn"> <b>Restaurants</b></button>
+    <div class="dropdown-child">
+        <a href="/restlist">Catalog</a>
+        <a href="/searchRest.html">Search</a>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="menubtn">Pizzas</button>
+    <div class="dropdown-child">
+        <a href="/pizzalist">Catalog</a>
+        <a href="/searchPizza.html">Search</a>
+    </div>
+</div>
+<button type="button" onclick="card();">Card</button>
+<div class="dropdown">
+    <button class="menubtn">Admin Tools</button>
+    <div class="dropdown-child">
+        <a href="/check?dest=addRest.html">Add Restaurant</a>
+        <a href="/check?dest=addPizza.html">Add Pizza</a>
+        <a href="/check?dest=delete.html">Delete Item</a>
+        <a href="/check?dest=h2-console">Console</a>
+    </div>
+</div>
+<button type="button" onclick="log();">Login</button>
+</div>
+<h1 style="text-align:center">Pizza Shop Simulator</h1>
+<p style="text-align:center">This is a useless pizza shop simulator, created as a final project
+to Java course, so frontend part is very simple</p>
+<h3 style="text-align:center">What can I do with this app?</h3>
+    <p>•	Go to 'Restaurants' -> 'Catalog' Tab to see all available restaurants</p>
+    <p>•	Go to 'Pizzas' -> 'Catalog' Tab to see a whole pizza menu</p>
+    <p>•	Search for particular restaurant/menu going to 'Restaurants'/'Pizzas' -> 'Search' Tab</p>
+    <p>•	Log in to make an order ('Login' Tab)</p>
+    <p>•	To create a new profile, go to 'Login' -> 'New customer?' Tab</p>
+    <p>•	Click on restaurant/pizza name to see a detailed info about it</p>
+    <p>•	Click on 'Add to Card' button to add it to your order</p>
+    <p>•	Your current order is on 'Card' Tab</p>
+    <p>•	There you can also make an order by clicking on special button</p>
+    <p>NOTICE that after the order confirmation your Card will be empty</p>
+    <p>•	Add/Delete restaurants/pizzas in Administrator tools Tab</p>
+    <p>NOTICE that this feature is for admins only</p>
+    <p>*but, actually, you can become an Admin after Login with 'admin@pizza.com' - 'Passw0rd!' credentials</p>
+<div th:replace="footer"></div>
+</body>
+</html>

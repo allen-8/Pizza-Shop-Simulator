@@ -1,0 +1,54 @@
+<script>
+    function change()
+    {
+        var oldpass = document.getElementById("oldpass").value;
+        var pass = document.getElementById("pass").value;
+        var pass2 = document.getElementById("pass2").value;
+        if (oldpass == "" || pass == "" || pass2 == "") {
+          return; }
+        if (pass != pass2) {
+          window.alert("Passwords do not match!");
+          return;
+        }
+        var url = "/changepassword?old=" + oldpass + "&new=" + pass;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send(null);
+        xhr.onload = function() {
+            alert(`${xhr.response}`);
+            if (xhr.status == 200)
+                location.href = "/checklogin";
+            };
+    }
+    function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Change Name - Pizza Shop Simulator</title>
+</head>
+<body>
+<h2 style="padding-top:20px"> Change Name </h2>
+<form name="new_rest" class="myform">
+  <div class="form-inner">
+    <h4>Old Password*</h4>
+    <input type="password" id="oldpass" name="oldpass" placeholder="old password" required/>
+    <h4>New Password*</h4>
+    <input type="password" id="pass" name="pass" placeholder="new password" required/>
+    <h4>Confirm Password*</h4>
+    <input type="password" id="pass2" name="pass2" placeholder="new password" required/>
+  </div>
+  <div style="padding-left:165px">
+    <button type="submit" onclick="change();">Change</button>
+  </div>
+  <div style="padding-left:172px">
+    <button type="button" onclick="back();">Back</button>
+  </div>
+</form>
+</body>
+</html>

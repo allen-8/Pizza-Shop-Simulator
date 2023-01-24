@@ -1,0 +1,60 @@
+<script>
+    function add()
+    {
+        var url = "/register";
+        var user = {};
+        user.name = document.getElementById("name").value;
+        user.surname = document.getElementById("last").value;
+        user.email = document.getElementById("email").value;
+        if (user.name == "" || user.email == "")
+            return;
+        user.password = document.getElementById("pass").value;
+        if (user.password != document.getElementById("pass2").value) {
+            window.alert("Passwords do not match!");
+            return; }
+        var json = JSON.stringify(user);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(json);
+        xhr.onload = function() {
+            alert(`${xhr.response}`);
+            if (xhr.status == 201)
+                location.href = "/login.html"
+            };
+    }
+        function back()
+    {
+        location.href = "/";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Registration - Pizza Shop Simulator</title>
+</head>
+<body>
+<h2 style="padding-top:20px"> Registration </h2>
+<form name="new_rest" class="myform">
+    <div class="form-inner">
+        <h4>Name*</h4>
+        <input type="text" id="name" name="name" placeholder="Name" required/>
+        <h4>Last Name</h4>
+        <input type="text" id="last" name="last" placeholder="Last Name"/>
+        <h4>Email*</h4>
+        <input type="email" id="email" name="email" placeholder="user@google.com" required/>
+        <h4>Password*</h4>
+        <p>*password must contain at least 6 symbols</p>
+        <input type="password" id="pass" name="pass" placeholder="password" required/>
+        <h4>Repeat Password*</h4>
+        <input type="password" id="pass2" name="pass2" placeholder="password" required/>
+    </div>
+    <div style="padding-left:110px">
+        <button type="submit" onclick="add();">Add</button>
+        <button type="submit" onclick="back();">Back</button>
+    </div>
+</form>
+</body>
+</html>

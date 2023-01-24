@@ -1,0 +1,45 @@
+<script>
+    function back()
+    {
+        location.href = "/";
+    }
+    function card()
+    {
+        location.href = "/showcard";
+    }
+    function chname()
+    {
+        location.href = "changeName.html";
+    }
+    function chpass()
+    {
+        location.href = "changePass.html";
+    }
+    function logoff()
+    {
+        location.href = "/logoff";
+    }
+</script>
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="styles1.css">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>User - Pizza Shop Simulator</title>
+</head>
+<body xmlns:th="http://www.thymeleaf.org" class="body">
+    <h1></h1>
+    <h2 style="text-align:center" th:text="'Welcome, ' + ${user.name} + ' ' + ${user.surname}"></h2>
+    <h4 th:text="${user.email}"></h4>
+    <div style="text-align:center">
+    <button type="button" onclick="card();">My Card</button>
+    </div>
+    <div style="padding-left:500px">
+        <button type="button" onclick="chname();">Change Name</button>
+        <button type="button" onclick="chpass();">Change Password</button>
+        <button type="button" onclick="logoff();">Logoff</button>
+    </div>
+    <div style="text-align:center">
+    <button type="button" onclick="back();">Back</button>
+    </div>
+</body>

@@ -1,0 +1,58 @@
+<script>
+    function searchpizza()
+    {
+        var url = "/search_pizza?rest=" + document.getElementById("rest").value +
+        "&ing=" + document.getElementById("ing").value + "&size=" + document.getElementById("size").value
+         + "&sort=" + document.getElementById("sort").value;
+        location.href = url;
+    }
+        function back()
+    {
+        location.href = "/";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Search Pizza - Pizza Shop Simulator</title>
+</head>
+<body>
+<h1></h1>
+<h2>Search for pizza...</h2>
+<form name="search" class="myform" >
+    <div class="form-inner">
+        <h4>Restaurant</h4>
+        <input type="text" id="rest" name="rest" placeholder="leave empty for all"/><br/>
+        <h4>Ingredients</h4>
+        <p>*separate ingredients by space</p>
+        <p>*service will search for keywords in pizza's description</p>
+        <p>*1-letter words will be ignored</p>
+        <input type="text" id="ing" name="ing" placeholder="cheese onions chicken"/><br/>
+        <p>&nbsp;</p>
+        <h4>Size</h4>
+        <div style="padding-left:150px">
+            <select id="size" name ="size">
+                <option value="Any">Any</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="big">Big</option>
+            </select>
+        </div>
+        <h4>Sort by</h4>
+        <div style="padding-left:150px">
+            <select id="sort" name ="sort">
+                <option value="name">Name</option>
+                <option value="rest">Restaurant</option>
+            </select>
+        </div>
+    </div>
+</form>
+<div style="padding-left:650px">
+    <button type="button" onclick="searchpizza();">Search</button>
+    <button type="submit" onclick="back();">Back</button>
+</div>
+</body>
+</html>
