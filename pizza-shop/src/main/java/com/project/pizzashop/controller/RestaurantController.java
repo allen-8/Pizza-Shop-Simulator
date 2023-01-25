@@ -303,7 +303,7 @@ public class RestaurantController {
         return new ResponseEntity<>("Changes applied successfully!", HttpStatus.OK);
     }
     @GetMapping("/changepassword")
-    public ResponseEntity<String> changeEmail(@RequestParam(name = "old") String old,
+    public ResponseEntity<String> changePass(@RequestParam(name = "old") String old,
                                              @RequestParam(name = "new") String pass) {
         Optional<User> active = users.findByIsActive(true);
         if (active.isEmpty())
