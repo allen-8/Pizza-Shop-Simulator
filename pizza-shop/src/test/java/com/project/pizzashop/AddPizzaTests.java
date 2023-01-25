@@ -12,7 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -174,6 +179,14 @@ public class AddPizzaTests {
         Optional<Pizza> pizza_ = pizzas.findByName("Test Pizza");
         pizza_.ifPresent(pizza -> pizzas.deleteById(pizza.getPizza_id()));
         restaurants.deleteById(restaurants.findByName("Test Cafe").get().getRest_id());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public void catchException(Exception ex) {
+        Optional<Restaurant> test = restaurants.findByName("Test Cafe");
+        test.ifPresent(rest -> restaurants.deleteById(rest.getRest_id()));
+        Optional<Pizza> test1 = pizzas.findByName("Test Pizza");
+        test1.ifPresent(pizza -> pizzas.deleteById(pizza.getPizza_id()));
     }
 
 }

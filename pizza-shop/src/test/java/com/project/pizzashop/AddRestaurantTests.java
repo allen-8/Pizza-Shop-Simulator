@@ -1,5 +1,6 @@
 package com.project.pizzashop;
 
+import com.project.pizzashop.entity.Pizza;
 import com.project.pizzashop.entity.Restaurant;
 import com.project.pizzashop.repository.RestaurantRepository;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Optional;
 
@@ -132,5 +134,10 @@ public class AddRestaurantTests {
         assertEquals(body, "Error!\nRate value must be in range (1, 5)\n");
         Optional<Restaurant> rest_ = restaurants.findByName("Test Pizza Restaurant");
         rest_.ifPresent(restaurant -> restaurants.deleteById(restaurant.getRest_id()));
+    }
+    @ExceptionHandler(Exception.class)
+    public void catchException(Exception ex) {
+        Optional<Restaurant> test = restaurants.findByName("Test Pizza Restaurant");
+        test.ifPresent(rest -> restaurants.deleteById(rest.getRest_id()));
     }
 }
