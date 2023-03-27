@@ -4,7 +4,7 @@ The easiest way to test it is to run project in IntelliJ IDEA and proceed to loc
 Technologies used: 
 •	Java
 •	Maven 
-•	BSpring Boot 
+•	Spring Boot 
 •	Thymeleaf 
 •	HTML 
 • CSS 
